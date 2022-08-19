@@ -5,9 +5,6 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "eslintConfig": {
-    "extends": "@glocalize-inc/eslint-config-gi"
-  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -42,7 +39,6 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
-    "@glocalize-inc/eslint-config-gi": "^1.0.7",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",

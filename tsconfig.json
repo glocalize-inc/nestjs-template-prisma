@@ -22,7 +22,5 @@
     "node_modules",
     "prisma",
     "dist",
-    "test",
-    "**/*spec.ts"
   ]
 }
