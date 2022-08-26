@@ -1,5 +1,5 @@
 import { BootstrapConsole } from 'nestjs-console'
-import { ConsoleModule } from './console/console.module'
+import { ConsoleModule } from './root/console/console.module'
 
 const bootstrap = new BootstrapConsole({
   module: ConsoleModule,

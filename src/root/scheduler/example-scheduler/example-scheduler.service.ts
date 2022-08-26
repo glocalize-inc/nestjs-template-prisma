@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Cron } from '@nestjs/schedule'
-import { ExampleService } from '../../example/example.service'
+import { ExampleService } from '../../../example/example.service'
 
 @Injectable()
 export class ExampleSchedulerService {

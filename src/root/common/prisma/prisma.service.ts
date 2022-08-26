@@ -1,4 +1,4 @@
-import { Logger, OnModuleDestroy } from '@nestjs/common'
+import { Logger, OnModuleDestroy, Optional } from '@nestjs/common'
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common'
 import { Prisma, PrismaClient } from '@prisma/client'
 import { InjectPrismaLogLevel } from './prisma.injector'
@@ -8,8 +8,10 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(@InjectPrismaLogLevel() logLevel: Prisma.LogLevel[]) {
-    super({ errorFormat: 'pretty', log: logLevel })
+  constructor(
+    @Optional() @InjectPrismaLogLevel() logLevel?: Prisma.LogLevel[],
+  ) {
+    super(logLevel ? { errorFormat: 'pretty', log: logLevel } : undefined)
   }
 
   async onModuleDestroy() {

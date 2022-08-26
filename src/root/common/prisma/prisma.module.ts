@@ -6,12 +6,7 @@ import { Prisma } from '@prisma/client'
 import { PRISMA_LOG_LEVEL } from './prisma.constants'
 import { PrismaService } from './prisma.service'
 
-const defaultPrismaLogLevel: Array<Prisma.LogLevel> = [
-  'query',
-  'info',
-  'warn',
-  'error',
-]
+const defaultPrismaLogLevel = ['query', 'info', 'warn', 'error'] as const
 
 export type PrismaModuleConfig = {
   logLevel?: Prisma.LogLevel[]

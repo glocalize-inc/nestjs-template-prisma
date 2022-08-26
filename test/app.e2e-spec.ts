@@ -1,24 +1,40 @@
-import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
-import * as request from 'supertest'
-import { AppModule } from './../src/app.module'
+import { CommonModule } from 'src/root/common/common.module'
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify'
+import { ApiModule } from 'src/root/api/api.module'
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication
+describe('ApiController (e2e)', () => {
+  let app: NestFastifyApplication
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [CommonModule.forRoot(), ApiModule.forRoot()],
     }).compile()
 
-    app = moduleFixture.createNestApplication()
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    )
     await app.init()
+    // app.setGlobalPrefix('/api/nestjs-prisma-template')
+    await app.getHttpAdapter().getInstance().ready()
   })
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!')
+  it('/healthz (GET)', () => {
+    return app
+      .inject({
+        method: 'GET',
+        url: '/healthz',
+      })
+      .then((response) => {
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toEqual('OK')
+      })
+  })
+
+  afterAll(async () => {
+    await app.close()
   })
 })

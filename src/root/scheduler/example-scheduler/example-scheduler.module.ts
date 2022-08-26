@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ExampleSchedulerService } from './example-scheduler.service'
-import { ExampleModule } from '../../example/example.module'
+import { ExampleModule } from '../../../example/example.module'
 
 @Module({
   imports: [ExampleModule],

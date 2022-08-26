@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { UnknownElementException } from '@nestjs/core/errors/exceptions/unknown-element.exception'
 import { Command, Console } from 'nestjs-console'
-import { ExampleService } from '../../example/example.service'
+import { ExampleService } from '../../../example/example.service'
 
 type Verb = 'print-hello'
 
