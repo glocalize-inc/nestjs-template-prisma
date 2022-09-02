@@ -1,29 +1,27 @@
-import { DynamicModule, Module, Type } from '@nestjs/common'
+import { DynamicModule, Module } from '@nestjs/common'
 import { ModuleImportType } from 'src/shared/types'
 import { ApiController } from './api.controller'
 import { ApiService } from './api.service'
-import { CommonModule } from '../common'
+import { CommonModule, CommonModuleParams } from '../common/common.module'
 
 type ApiModuleForRootOptions = {
   imports?: ModuleImportType[]
   controllers?: any[]
-  commonModule: Type<CommonModule>
+  commonModuleParams?: CommonModuleParams
 }
 
 @Module({})
 export class ApiModule {
-  static forRoot(
-    {
-      imports = [],
-      controllers = [],
-      commonModule,
-    }: ApiModuleForRootOptions = { commonModule: CommonModule },
-  ): DynamicModule {
+  static forRoot({
+    imports = [],
+    controllers = [],
+    commonModuleParams,
+  }: ApiModuleForRootOptions = {}): DynamicModule {
     return {
       module: ApiModule,
       controllers: [ApiController, ...controllers],
       providers: [ApiService],
-      imports: [...imports, commonModule],
+      imports: [...imports, CommonModule.forRoot(commonModuleParams)],
     }
   }
 }

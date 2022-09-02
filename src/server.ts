@@ -1,12 +1,9 @@
 import { ApiModule } from './root/api/api.module'
-import { CommonModule } from './root/common/common.module'
-import { bootstrap } from './shared/bootstrap'
+import { apiServerBootstrap } from './shared/api-server-bootstrap'
 
-bootstrap({
+apiServerBootstrap({
   module: ApiModule.forRoot({
     imports: [
-      CommonModule.forRoot(),
-      ApiModule.forRoot(),
       // GraphQLModule.forRoot({
       //   debug: true,
       //   playground: true,

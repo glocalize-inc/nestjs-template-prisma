@@ -1,8 +1,6 @@
-import { ArgsType } from '@nestjs/graphql'
 import { Type } from 'class-transformer'
 import { IsDate, IsOptional } from 'class-validator'
 
-@ArgsType()
 export class BetweenDateDto {
   @Type(() => Date)
   @IsDate()

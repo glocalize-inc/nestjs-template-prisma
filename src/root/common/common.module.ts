@@ -8,7 +8,7 @@
 import { DynamicModule, Global, Module } from '@nestjs/common'
 import { PrismaModule, PrismaModuleConfig } from './prisma/prisma.module'
 
-type CommonModuleForRootOptions = {
+export type CommonModuleParams = {
   prismaModuleConfig?: PrismaModuleConfig
 }
 
@@ -17,7 +17,7 @@ type CommonModuleForRootOptions = {
 export class CommonModule {
   static forRoot({
     prismaModuleConfig,
-  }: CommonModuleForRootOptions = {}): DynamicModule {
+  }: CommonModuleParams = {}): DynamicModule {
     return {
       module: CommonModule,
       imports: [PrismaModule.forRoot(prismaModuleConfig)],

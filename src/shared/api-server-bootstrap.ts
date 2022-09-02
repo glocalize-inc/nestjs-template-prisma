@@ -58,7 +58,7 @@ function buildSwagger({
   )
 }
 
-export async function bootstrap({
+export async function apiServerBootstrap({
   module,
   serviceName,
   srcRepositoryName = packageJson.name,
